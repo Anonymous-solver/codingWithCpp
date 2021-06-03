@@ -1,0 +1,21 @@
+.MODEL SMALL
+.STACK 100H
+.DATA
+A1 DB "L"
+.CODE
+MAIN PROC
+    MOV AX,@DATA
+    MOV DS,AX
+
+    MOV BL,A1
+
+    ADD BL,32
+
+    MOV DL,BL
+    MOV AH,2
+    INT 21H
+
+    MOV AH,4CH
+    INT 21H
+    MAIN ENDP
+END MAIN

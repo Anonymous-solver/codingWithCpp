@@ -1,0 +1,57 @@
+.MODEL SMALL
+.STACK 100H
+.DATA
+A1 DW 7
+A2 DW 2
+ADDMSG DB "ADDITION: $"
+SUBMSG DB 10,13,"SUBTRACTION: $"
+.CODE
+MAIN PROC
+    ;INITIALIZE
+    MOV AX, @DATA
+    MOV DS,AX
+
+    ;INIT
+
+    MOV BX,A1
+    MOV CX,A2
+
+    ;ADDITION
+
+    LEA DX,ADDMSG
+    MOV AH,9
+    INT 21H
+
+
+    ADD BX,CX
+    ADD BX,48
+
+    MOV DX,BX
+    MOV AH,2
+    INT 21H
+
+    ;INIT
+
+    MOV BX,A1
+    MOV CX,A2
+
+    ;SUBTRACTION
+
+    LEA DX,SUBMSG
+    MOV AH,9
+    INT 21H
+
+    SUB BX,CX
+    ADD BX,48
+
+    MOV DX,BX
+    MOV AH,2
+    INT 21H
+
+
+
+    MOV AH,4CH
+    INT 21H
+    MAIN ENDP
+END MAIN
+}
